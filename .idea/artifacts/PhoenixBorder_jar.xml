@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="PhoenixBorder:jar">
+    <output-path>$PROJECT_DIR$/out</output-path>
+    <root id="archive" name="PhoenixBorder.jar">
+      <element id="module-output" name="PhoenixBorder" />
+    </root>
+  </artifact>
+</component>
