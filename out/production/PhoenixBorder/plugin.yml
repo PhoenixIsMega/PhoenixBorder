@@ -1,0 +1,25 @@
+name: PhoenixBorder
+main: me.phoenixcantfly.phoenixborder.Main
+version: 0.0.1
+description: cool border is v cool
+api-version: 1.18
+
+commands:
+    setbordercentre:
+        usage: /<command> <x> <y> <z>
+        description: Sets Border Centre
+    setborderradius:
+        usage: /<command> <radius> <time>
+        description: Sets Border Radius
+    setborderfloorheight:
+        usage: /<command> <y> <time>
+        description: Sets Border Floor Height
+    setborderceilingheight:
+        usage: /<command> <y> <time>
+        description: Sets Border Ceiling Height
+    enableborder:
+        usage: /<command>
+        description: Enables Border
+    disableborder:
+        usage: /<command>
+        description: Disables Border
