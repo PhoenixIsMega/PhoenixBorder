@@ -18,6 +18,7 @@ public class PlayerMove implements Listener {
     @EventHandler
     public void PlayerMove(PlayerMoveEvent e){
         if (!classManager.getBorderManager().isBorderOn()) {return;} //if border isnt on return
+        if (!e.getPlayer().getWorld().equals(classManager.getBorderManager().getWorld())) {return;}
         Location playerLocation = e.getPlayer().getLocation();
         //use squared distance to save processing powerr
         //Integer distanceFromCentre =
