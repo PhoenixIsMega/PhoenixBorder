@@ -27,3 +27,9 @@ commands:
     getworldname:
         usage: /<command>
         description: Gets World Name
+    setborderrgb:
+        usage: /<command> <r> <g> <b>
+        description: Sets Particle RGB
+    setborderparticlesize:
+        usage: /<command> <size>
+        description: Sets Particle Size

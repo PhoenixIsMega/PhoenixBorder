@@ -14,6 +14,7 @@ public class ParticleManager {
 
     //
     public void playBorderParticles(){
+        if (!classManager.getBorderManager().isBorderOn()) { return; }
         World world = classManager.getBorderManager().getWorld();
 
         //walls

@@ -1,14 +1,11 @@
-on:
-  True
-world-name:
-  world
-floor-height:
-  150.0
-ceiling-height:
-  200.0
-x:
-  0.0
-z:
-  0.0
-radius:
-  30.0
+border-enabled: true
+world-name: world
+floor-height: 150.0
+ceiling-height: 200.0
+x: 0.0
+z: 0.0
+radius: 30.0
+r: 20
+g: 235
+b: 30
+size: 1.5
