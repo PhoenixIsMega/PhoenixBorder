@@ -7,11 +7,10 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class SetBorderRadius implements CommandExecutor {
-    //add time interpolation
+public class SetBorderParticleSize implements CommandExecutor {
     private final ClassManager classManager;
 
-    public SetBorderRadius(ClassManager classManager){
+    public SetBorderParticleSize(ClassManager classManager){
         this.classManager = classManager;
     }
 
@@ -20,12 +19,12 @@ public class SetBorderRadius implements CommandExecutor {
         if (commandSender instanceof Player) {
             if (commandSender.isOp()) {
                 if(strings.length > 0){
-                    classManager.getConfigManager().getConfig().set("radius", Double.valueOf(strings[0]));
+                    classManager.getConfigManager().getConfig().set("size", Double.valueOf(strings[0]));
                     classManager.getConfigManager().saveConfig();
-                    classManager.getBorderManager().setBorderRadius(classManager.getConfigManager().getConfig().getDouble("radius"));
-                    classManager.getMessageManager().messagePlayer((Player) commandSender, "Set Border Radius To " + ChatColor.GOLD + strings[0]);
+                    classManager.getParticleManager().setSize((float) classManager.getConfigManager().getConfig().getDouble("size"));
+                    classManager.getMessageManager().messagePlayer((Player) commandSender, "Set border particle size to " + ChatColor.GOLD + strings[0]);
                 } else {
-                    classManager.getMessageManager().warnPlayer((Player) commandSender, "Please specify a new radius (eg: /setborderradius 30.0)");
+                    classManager.getMessageManager().warnPlayer((Player) commandSender, "Please specify a new particle size (eg: /setborderparticlesize 1.0)");
                 }
             }
         }

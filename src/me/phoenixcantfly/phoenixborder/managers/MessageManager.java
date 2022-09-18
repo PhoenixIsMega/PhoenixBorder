@@ -4,7 +4,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
 public class MessageManager {
-    public void WarnPlayer(Player player, String message){
+    public void warnPlayer(Player player, String message){
         player.sendMessage(ChatColor.DARK_RED + ChatColor.BOLD.toString() + "["
                 + ChatColor.GOLD + ChatColor.BOLD.toString() + "Phoenix"
                 + ChatColor.RED + ChatColor.BOLD.toString() + "Border" + ChatColor.DARK_RED
@@ -12,7 +12,7 @@ public class MessageManager {
                 + ChatColor.RED + message);
     }
 
-    public void MessagePlayer(Player player, String message){
+    public void messagePlayer(Player player, String message){
         player.sendMessage(ChatColor.DARK_RED + ChatColor.BOLD.toString() + "["
                 + ChatColor.GOLD + ChatColor.BOLD.toString() + "Phoenix"
                 + ChatColor.RED + ChatColor.BOLD.toString() + "Border" + ChatColor.DARK_RED

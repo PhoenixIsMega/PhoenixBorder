@@ -2,10 +2,11 @@ border-enabled: true
 world-name: world
 floor-height: 150.0
 ceiling-height: 200.0
-x: 0.0
-z: 0.0
+x: 50.0
+z: 50.0
 radius: 30.0
 r: 20
 g: 235
 b: 30
 size: 1.5
+distance: 5.0

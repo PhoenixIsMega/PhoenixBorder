@@ -7,11 +7,11 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class SetBorderRadius implements CommandExecutor {
-    //add time interpolation
+public class SetBorderParticleDistance implements CommandExecutor {
+    //add interpolation
     private final ClassManager classManager;
 
-    public SetBorderRadius(ClassManager classManager){
+    public SetBorderParticleDistance(ClassManager classManager){
         this.classManager = classManager;
     }
 
@@ -20,12 +20,12 @@ public class SetBorderRadius implements CommandExecutor {
         if (commandSender instanceof Player) {
             if (commandSender.isOp()) {
                 if(strings.length > 0){
-                    classManager.getConfigManager().getConfig().set("radius", Double.valueOf(strings[0]));
+                    classManager.getConfigManager().getConfig().set("distance", Double.valueOf(strings[0]));
                     classManager.getConfigManager().saveConfig();
-                    classManager.getBorderManager().setBorderRadius(classManager.getConfigManager().getConfig().getDouble("radius"));
-                    classManager.getMessageManager().messagePlayer((Player) commandSender, "Set Border Radius To " + ChatColor.GOLD + strings[0]);
+                    classManager.getParticleManager().setDistanceBetweenPoints(classManager.getConfigManager().getConfig().getDouble("distance"));
+                    classManager.getMessageManager().messagePlayer((Player) commandSender, "Set distance between border particles to " + ChatColor.GOLD + strings[0]);
                 } else {
-                    classManager.getMessageManager().warnPlayer((Player) commandSender, "Please specify a new radius (eg: /setborderradius 30.0)");
+                    classManager.getMessageManager().warnPlayer((Player) commandSender, "Please specify a new distance between particles (eg: /setborderparticledistance 5.0)");
                 }
             }
         }

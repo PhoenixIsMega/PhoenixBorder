@@ -1,9 +1,6 @@
 package me.phoenixcantfly.phoenixborder;
 
-import me.phoenixcantfly.phoenixborder.commands.DisableBorder;
-import me.phoenixcantfly.phoenixborder.commands.EnableBorder;
-import me.phoenixcantfly.phoenixborder.commands.GetWorldName;
-import me.phoenixcantfly.phoenixborder.commands.SetBorderRadius;
+import me.phoenixcantfly.phoenixborder.commands.*;
 import me.phoenixcantfly.phoenixborder.listeners.PlayerMove;
 import me.phoenixcantfly.phoenixborder.managers.ClassManager;
 import me.phoenixcantfly.phoenixborder.managers.ConfigManager;
@@ -27,6 +24,14 @@ public class Main extends JavaPlugin {
         this.getCommand("enableborder").setExecutor(new EnableBorder(this.classManager));
         this.getCommand("disableborder").setExecutor(new DisableBorder(this.classManager));
         this.getCommand("setborderradius").setExecutor(new SetBorderRadius(this.classManager));
+        this.getCommand("setborderfloorheight").setExecutor(new SetBorderFloorHeight(this.classManager));
+        this.getCommand("setborderceilingheight").setExecutor(new SetBorderCeilingHeight(this.classManager));
+        this.getCommand("setbordercentre").setExecutor(new SetBorderCentre(this.classManager));
+        this.getCommand("setborderparticledistance").setExecutor(new SetBorderParticleDistance(this.classManager));
+        this.getCommand("setborderparticlesize").setExecutor(new SetBorderParticleSize(this.classManager));
+        this.getCommand("setborderrgb").setExecutor(new SetBorderRGB(this.classManager));
+        this.getCommand("setborderworld").setExecutor(new SetBorderWorld(this.classManager));
+
 
         getServer().getPluginManager().registerEvents(new PlayerMove(this.classManager), this);
 
@@ -38,6 +43,11 @@ public class Main extends JavaPlugin {
             classManager.getBorderManager().setBorderZ(classManager.getConfigManager().getConfig().getDouble("z"));
             classManager.getBorderManager().setBorderRadius(classManager.getConfigManager().getConfig().getDouble("radius"));
             classManager.getBorderManager().setWorld(Bukkit.getServer().getWorld(Objects.requireNonNull(classManager.getConfigManager().getConfig().getString("world-name"))));
+            classManager.getParticleManager().setR(classManager.getConfigManager().getConfig().getInt("r"));
+            classManager.getParticleManager().setG(classManager.getConfigManager().getConfig().getInt("g"));
+            classManager.getParticleManager().setB(classManager.getConfigManager().getConfig().getInt("b"));
+            classManager.getParticleManager().setSize((float) classManager.getConfigManager().getConfig().getDouble("size"));
+            classManager.getParticleManager().setDistanceBetweenPoints(classManager.getConfigManager().getConfig().getDouble("distance"));
 
             Bukkit.broadcastMessage(String.valueOf(classManager.getBorderManager().isBorderOn()));
 

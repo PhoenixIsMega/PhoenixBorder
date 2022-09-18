@@ -22,7 +22,7 @@ public class DisableBorder implements CommandExecutor {
                 classManager.getConfigManager().getConfig().set("border-enabled", false);
                 classManager.getConfigManager().saveConfig();
                 classManager.getBorderManager().setBorderOn(classManager.getConfigManager().getConfig().getBoolean("border-enabled"));
-                classManager.getMessageManager().MessagePlayer((Player) commandSender, "Border Disabled!");
+                classManager.getMessageManager().messagePlayer((Player) commandSender, "Border Disabled!");
             }
         }
         return true;

@@ -12,6 +12,13 @@ public class ParticleManager {
         this.classManager = classManager;
     }
 
+    private int r;
+    private int g;
+    private int b;
+    private float size;
+
+    private double distanceBetweenPoints;
+
     //
     public void playBorderParticles(){
         if (!classManager.getBorderManager().isBorderOn()) { return; }
@@ -30,13 +37,12 @@ public class ParticleManager {
         if (cylHeight < 0) {cylHeight *= -1;}
 
         int minPointCount = 5; //change to be variable in settings later
-        int distanceBetweenPoints = 5; //change to be variable and double later
         int pointCount = Math.max(minPointCount, (int)Math.floor((2*radius*Math.PI)/distanceBetweenPoints));
 
         int ringCount = (int)Math.floor(cylHeight/distanceBetweenPoints);
         double ringBuffer = ((cylHeight/distanceBetweenPoints) - Math.floor(cylHeight/distanceBetweenPoints))/2;
 
-        Particle.DustOptions dustOptions = new Particle.DustOptions(Color.fromRGB(16, 88, 74), 1.5F);
+        Particle.DustOptions dustOptions = new Particle.DustOptions(Color.fromRGB(r, g, b), size);
 
         //could stack to make spiral patter but too lazy
         for (double posY = floorHeight + ringBuffer; posY <= ceilingHeight; posY += distanceBetweenPoints) {
@@ -54,8 +60,70 @@ public class ParticleManager {
             }
         }
 
-        //Bukkit.broadcastMessage("Particle Incoming");
-        //caps1
-        //caps2
+        double stretch = 0.225*distanceBetweenPoints + 0.375;
+        double pattern = 1;
+        int capPointCount = (int)Math.floor(Math.pow((1/stretch), 2)*Math.pow(radius, 2));
+
+        for (int i = 1; i <= capPointCount; i++){
+            double posX = ((stretch*Math.sqrt(i))*Math.cos(((1+Math.sqrt(5)/pattern)*Math.PI)*i) + x);
+            double posZ = ((stretch*Math.sqrt(i))*Math.sin(((1+Math.sqrt(5)/pattern)*Math.PI)*i) + z);
+            new BukkitRunnable() {
+                @Override
+                public void run() {
+                    world.spawnParticle(Particle.REDSTONE, posX, floorHeight, posZ, 1, dustOptions);
+                }
+            }.runTask(classManager.getPlugin());
+        }
+
+        for (int i = 1; i <= capPointCount; i++){
+            double posX = ((stretch*Math.sqrt(i))*Math.cos(((1+Math.sqrt(5)/pattern)*Math.PI)*i) + x);
+            double posZ = ((stretch*Math.sqrt(i))*Math.sin(((1+Math.sqrt(5)/pattern)*Math.PI)*i) + z);
+            new BukkitRunnable() {
+                @Override
+                public void run() {
+                    world.spawnParticle(Particle.REDSTONE, posX, ceilingHeight, posZ, 1, dustOptions);
+                }
+            }.runTask(classManager.getPlugin());
+        }
+    }
+
+    public int getR() {
+        return r;
+    }
+
+    public void setR(int r) {
+        this.r = r;
+    }
+
+    public int getG() {
+        return g;
+    }
+
+    public void setG(int g) {
+        this.g = g;
+    }
+
+    public int getB() {
+        return b;
+    }
+
+    public void setB(int b) {
+        this.b = b;
+    }
+
+    public float getSize() {
+        return size;
+    }
+
+    public void setSize(float size) {
+        this.size = size;
+    }
+
+    public double getDistanceBetweenPoints() {
+        return distanceBetweenPoints;
+    }
+
+    public void setDistanceBetweenPoints(double distanceBetweenPoints) {
+        this.distanceBetweenPoints = distanceBetweenPoints;
     }
 }

@@ -7,7 +7,7 @@ softdepend: [Multiverse]
 
 commands:
     setbordercentre:
-        usage: /<command> <x> <y> <z>
+        usage: /<command> <x> <z>
         description: Sets Border Centre
     setborderradius:
         usage: /<command> <radius> <time>
@@ -33,3 +33,9 @@ commands:
     setborderparticlesize:
         usage: /<command> <size>
         description: Sets Particle Size
+    setborderparticledistance:
+        usage: /<command> <distance> <time>
+        description: Sets Distance Between Particles
+    setborderworld:
+        usage: /<command> <world-name>
+        description: Sets which world the border is in
