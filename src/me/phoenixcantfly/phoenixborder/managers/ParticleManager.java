@@ -6,6 +6,8 @@ import org.bukkit.Particle;
 import org.bukkit.World;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import javax.lang.model.element.NestingKind;
+
 public class ParticleManager {
     private final ClassManager classManager;
     public ParticleManager(ClassManager classManager) {
@@ -18,6 +20,8 @@ public class ParticleManager {
     private float size;
 
     private double distanceBetweenPoints;
+
+    private double distanceBetweenPointsVertical;
 
     //
     public void playBorderParticles(){
@@ -39,23 +43,21 @@ public class ParticleManager {
         int minPointCount = 5; //change to be variable in settings later
         int pointCount = Math.max(minPointCount, (int)Math.floor((2*radius*Math.PI)/distanceBetweenPoints));
 
-        int ringCount = (int)Math.floor(cylHeight/distanceBetweenPoints);
-        double ringBuffer = ((cylHeight/distanceBetweenPoints) - Math.floor(cylHeight/distanceBetweenPoints))/2;
+        int ringCount = (int)Math.floor(cylHeight/distanceBetweenPointsVertical);
+        double ringBuffer = (ceilingHeight - (floorHeight + (ringCount*distanceBetweenPointsVertical)))/2;
 
-        double particleSize = 100;
+        double particleSpeed = 100;
         Particle.DustOptions dustOptions = new Particle.DustOptions(Color.fromRGB(r, g, b), size);
 
-        //could stack to make spiral patter but too lazy
-        for (double posY = floorHeight + ringBuffer; posY <= ceilingHeight; posY += distanceBetweenPoints) {
-            for (int i = 1; i <= pointCount; i++) { //floor height is a temp, do other y levels
+        for (double posY = (floorHeight + ringBuffer); posY <= ceilingHeight; posY += distanceBetweenPointsVertical) {
+            for (int i = 1; i <= pointCount; i++) {
                 double posX = radius * Math.sin(i * ((2 * Math.PI) / pointCount)) + x;
                 double posZ = radius * Math.cos(i * ((2 * Math.PI) / pointCount)) + z;
                 double currentPosY = posY;
                 new BukkitRunnable() {
                     @Override
                     public void run() {
-                        world.spawnParticle(Particle.REDSTONE, posX, currentPosY, posZ, 1, 0, 0, 0, particleSize, dustOptions); //make forced?
-                        //Bukkit.broadcastMessage("HERE" + Bukkit.getServer().getWorlds());
+                        world.spawnParticle(Particle.REDSTONE, posX, currentPosY, posZ, 1, 0, 0, 0, particleSpeed, dustOptions); //make forced?
                     }
                 }.runTask(classManager.getPlugin());
             }
@@ -71,7 +73,7 @@ public class ParticleManager {
             new BukkitRunnable() {
                 @Override
                 public void run() {
-                    world.spawnParticle(Particle.REDSTONE, posX, floorHeight, posZ, 1, 0, 0, 0, particleSize, dustOptions); //make forced?
+                    world.spawnParticle(Particle.REDSTONE, posX, floorHeight, posZ, 1, 0, 0, 0, particleSpeed, dustOptions); //make forced?
                 }
             }.runTask(classManager.getPlugin());
         }
@@ -82,7 +84,7 @@ public class ParticleManager {
             new BukkitRunnable() {
                 @Override
                 public void run() {
-                    world.spawnParticle(Particle.REDSTONE, posX, ceilingHeight, posZ, 1, 0, 0, 0, particleSize, dustOptions); //make forced?
+                    world.spawnParticle(Particle.REDSTONE, posX, ceilingHeight, posZ, 1, 0, 0, 0, particleSpeed, dustOptions); //make forced?
                 }
             }.runTask(classManager.getPlugin());
         }
@@ -126,5 +128,13 @@ public class ParticleManager {
 
     public void setDistanceBetweenPoints(double distanceBetweenPoints) {
         this.distanceBetweenPoints = distanceBetweenPoints;
+    }
+
+    public double getDistanceBetweenPointsVertical() {
+        return distanceBetweenPointsVertical;
+    }
+
+    public void setDistanceBetweenPointsVertical(double distanceBetweenPointsVertical) {
+        this.distanceBetweenPointsVertical = distanceBetweenPointsVertical;
     }
 }

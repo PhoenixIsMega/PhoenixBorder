@@ -117,6 +117,12 @@ public class ConfigManager {
         classManager.getParticleManager().setDistanceBetweenPoints(classManager.getConfigManager().getConfig().getDouble("distance"));
     }
 
+    public void setBorderParticleDistanceVertical(String[] strings){
+        classManager.getConfigManager().getConfig().set("distance-vertical", Double.valueOf(strings[0]));
+        classManager.getConfigManager().saveConfig();
+        classManager.getParticleManager().setDistanceBetweenPointsVertical(classManager.getConfigManager().getConfig().getDouble("distance-vertical"));
+    }
+
     public void setBorderParticleSize(String[] strings){
         classManager.getConfigManager().getConfig().set("size", Double.valueOf(strings[0]));
         classManager.getConfigManager().saveConfig();

@@ -9,9 +9,14 @@ import org.bukkit.scheduler.BukkitRunnable;
 import java.util.Objects;
 
 public class Main extends JavaPlugin {
-    //add time interpolation 1/5
+    //add time interpolation 1/6
     //reformat messages
-    //make command blocks do it too
+
+    //test cmd blbocks
+    //test commands + variations working
+    //test command misuse
+
+    //change all method from string
 
     private ClassManager classManager;
 
@@ -28,6 +33,7 @@ public class Main extends JavaPlugin {
         this.getCommand("setborderceilingheight").setExecutor(new SetBorderCeilingHeight(this.classManager));
         this.getCommand("setbordercentre").setExecutor(new SetBorderCentre(this.classManager));
         this.getCommand("setborderparticledistance").setExecutor(new SetBorderParticleDistance(this.classManager));
+        this.getCommand("setborderparticledistancevertical").setExecutor(new SetBorderParticleDistanceVertical(this.classManager));
         this.getCommand("setborderparticlesize").setExecutor(new SetBorderParticleSize(this.classManager));
         this.getCommand("setborderrgb").setExecutor(new SetBorderRGB(this.classManager));
         this.getCommand("setborderworld").setExecutor(new SetBorderWorld(this.classManager));
@@ -46,6 +52,7 @@ public class Main extends JavaPlugin {
             classManager.getParticleManager().setB(classManager.getConfigManager().getConfig().getInt("b"));
             classManager.getParticleManager().setSize((float) classManager.getConfigManager().getConfig().getDouble("size"));
             classManager.getParticleManager().setDistanceBetweenPoints(classManager.getConfigManager().getConfig().getDouble("distance"));
+            classManager.getParticleManager().setDistanceBetweenPointsVertical(classManager.getConfigManager().getConfig().getDouble("distance-vertical"));
             classManager.getBorderManager().setDamage((classManager.getConfigManager().getConfig().getDouble("damage")));
 
             Bukkit.broadcastMessage(String.valueOf(classManager.getBorderManager().isBorderOn()));
