@@ -2,6 +2,7 @@ package me.phoenixcantfly.phoenixborder.commands;
 
 import me.phoenixcantfly.phoenixborder.managers.ClassManager;
 import org.bukkit.ChatColor;
+import org.bukkit.block.CommandBlock;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -17,17 +18,15 @@ public class SetBorderCeilingHeight implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
-        if (commandSender instanceof Player) {
-            if (commandSender.isOp()) {
-                if (strings.length > 0) {
-                    classManager.getBorderManager().setBorderCeiling(Double.parseDouble(strings[0]));
-                    classManager.getConfigManager().getConfig().set("ceiling-height", classManager.getBorderManager().getBorderCeiling());
-                    classManager.getConfigManager().getConfig().set("floor-height", classManager.getBorderManager().getBorderFloor());
-                    classManager.getConfigManager().saveConfig();
-                    classManager.getMessageManager().messagePlayer((Player) commandSender, "Set border ceiling height to " + ChatColor.GOLD + strings[0]);
-                } else {
-                    classManager.getMessageManager().warnPlayer((Player) commandSender, "Please specify a new border ceiling height (eg: /setbordercielingheight 30.0)");
-                }
+        if ((commandSender instanceof Player && !(((Player) commandSender).isOp()))) { return true; }
+        if (strings.length > 0){
+            classManager.getConfigManager().setCeilingHeight(strings);
+            if (commandSender instanceof Player) {
+                classManager.getMessageManager().messagePlayer((Player) commandSender, "Set border ceiling height to " + ChatColor.GOLD + strings[0]);
+            }
+        } else {
+            if (commandSender instanceof Player) {
+                classManager.getMessageManager().warnPlayer((Player) commandSender, "Please specify a new border ceiling height (eg: /setbordercielingheight 30.0)");
             }
         }
         return true;

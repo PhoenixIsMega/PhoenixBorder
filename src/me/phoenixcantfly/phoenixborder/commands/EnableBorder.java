@@ -18,13 +18,12 @@ public class EnableBorder implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
+        if ((commandSender instanceof Player && !(((Player) commandSender).isOp()))) {
+            return true;
+        }
+        classManager.getConfigManager().enableBorder();
         if (commandSender instanceof Player) {
-            if (commandSender.isOp()) {
-                classManager.getConfigManager().getConfig().set("border-enabled", true);
-                classManager.getConfigManager().saveConfig();
-                classManager.getBorderManager().setBorderOn(classManager.getConfigManager().getConfig().getBoolean("border-enabled"));
-                classManager.getMessageManager().messagePlayer((Player) commandSender, "Border Enabled!");
-            }
+            classManager.getMessageManager().messagePlayer((Player) commandSender, "Border Enabled!");
         }
         return true;
     }

@@ -9,10 +9,9 @@ import org.bukkit.scheduler.BukkitRunnable;
 import java.util.Objects;
 
 public class Main extends JavaPlugin {
-    //add time interpolation
+    //add time interpolation 1/5
     //reformat messages
     //make command blocks do it too
-    //make time variable
 
     private ClassManager classManager;
 

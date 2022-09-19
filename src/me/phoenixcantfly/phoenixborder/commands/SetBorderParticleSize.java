@@ -16,16 +16,15 @@ public class SetBorderParticleSize implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
-        if (commandSender instanceof Player) {
-            if (commandSender.isOp()) {
-                if(strings.length > 0){
-                    classManager.getConfigManager().getConfig().set("size", Double.valueOf(strings[0]));
-                    classManager.getConfigManager().saveConfig();
-                    classManager.getParticleManager().setSize((float) classManager.getConfigManager().getConfig().getDouble("size"));
-                    classManager.getMessageManager().messagePlayer((Player) commandSender, "Set border particle size to " + ChatColor.GOLD + strings[0]);
-                } else {
-                    classManager.getMessageManager().warnPlayer((Player) commandSender, "Please specify a new particle size (eg: /setborderparticlesize 1.0)");
-                }
+        if ((commandSender instanceof Player && !(((Player) commandSender).isOp()))) { return true; }
+        if(strings.length > 0){
+            classManager.getConfigManager().setBorderParticleSize(strings);
+            if (commandSender instanceof Player) {
+                classManager.getMessageManager().messagePlayer((Player) commandSender, "Set border particle size to " + ChatColor.GOLD + strings[0]);
+            }
+        } else {
+            if (commandSender instanceof Player) {
+                classManager.getMessageManager().warnPlayer((Player) commandSender, "Please specify a new particle size (eg: /setborderparticlesize 1.0)");
             }
         }
         return true;
