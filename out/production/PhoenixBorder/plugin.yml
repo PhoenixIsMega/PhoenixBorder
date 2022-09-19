@@ -39,3 +39,6 @@ commands:
     setborderworld:
         usage: /<command> <world-name>
         description: Sets which world the border is in
+    setborderdamage:
+        usage: /<command> <value>
+        description: Sets how much damage border does at 1.25s intervals

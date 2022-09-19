@@ -10,7 +10,7 @@ public class ClassManager {
     private final ConfigManager configManager;
     public ClassManager(Main plugin) {
         this.plugin = plugin;
-        this.borderManager = new BorderManager();
+        this.borderManager = new BorderManager(this);
         this.particleManager = new ParticleManager(this);
         this.configManager = new ConfigManager(this);
         this.messageManager = new MessageManager();

@@ -1,9 +1,7 @@
 package me.phoenixcantfly.phoenixborder;
 
 import me.phoenixcantfly.phoenixborder.commands.*;
-import me.phoenixcantfly.phoenixborder.listeners.PlayerMove;
 import me.phoenixcantfly.phoenixborder.managers.ClassManager;
-import me.phoenixcantfly.phoenixborder.managers.ConfigManager;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -11,13 +9,16 @@ import org.bukkit.scheduler.BukkitRunnable;
 import java.util.Objects;
 
 public class Main extends JavaPlugin {
-    //floor cant be higher than ceiling, vice verse
-    //if floor below bottom of world, dont show particles
+    //add time interpolation
+    //reformat messages
+    //make command blocks do it too
+    //make time variable
 
     private ClassManager classManager;
 
     @Override
     public void onEnable() {
+        this.getServer().getScheduler().cancelTasks(this);
         this.classManager = new ClassManager(this);
 
         this.getCommand("getworldname").setExecutor(new GetWorldName());
@@ -31,9 +32,7 @@ public class Main extends JavaPlugin {
         this.getCommand("setborderparticlesize").setExecutor(new SetBorderParticleSize(this.classManager));
         this.getCommand("setborderrgb").setExecutor(new SetBorderRGB(this.classManager));
         this.getCommand("setborderworld").setExecutor(new SetBorderWorld(this.classManager));
-
-
-        getServer().getPluginManager().registerEvents(new PlayerMove(this.classManager), this);
+        this.getCommand("setborderdamage").setExecutor(new SetBorderDamage(this.classManager));
 
         Bukkit.getScheduler().scheduleSyncDelayedTask(this, (Runnable) () -> {
             classManager.getBorderManager().setBorderOn(classManager.getConfigManager().getConfig().getBoolean("border-enabled"));
@@ -48,6 +47,7 @@ public class Main extends JavaPlugin {
             classManager.getParticleManager().setB(classManager.getConfigManager().getConfig().getInt("b"));
             classManager.getParticleManager().setSize((float) classManager.getConfigManager().getConfig().getDouble("size"));
             classManager.getParticleManager().setDistanceBetweenPoints(classManager.getConfigManager().getConfig().getDouble("distance"));
+            classManager.getBorderManager().setDamage((classManager.getConfigManager().getConfig().getDouble("damage")));
 
             Bukkit.broadcastMessage(String.valueOf(classManager.getBorderManager().isBorderOn()));
 
@@ -57,6 +57,7 @@ public class Main extends JavaPlugin {
 
     @Override
     public void onDisable() {
+        this.getServer().getScheduler().cancelTasks(this);
     }
 
     public ClassManager getClassManager() {

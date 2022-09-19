@@ -1,13 +1,40 @@
 package me.phoenixcantfly.phoenixborder.managers;
 
+import org.bukkit.Bukkit;
+import org.bukkit.GameMode;
+import org.bukkit.Location;
 import org.bukkit.World;
+import org.bukkit.entity.Player;
+
+import java.util.Objects;
 
 public class BorderManager {
+    private final ClassManager classManager;
+    public BorderManager(ClassManager classManager) {
+        this.classManager = classManager;
+        Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(classManager.getPlugin(), () -> {
+            for (Player player : Bukkit.getServer().getOnlinePlayers()) {
+                if (!classManager.getBorderManager().isBorderOn()) {continue;} //if border isnt on return
+                if (!player.getWorld().equals(classManager.getBorderManager().getWorld())) {continue;}
+                if (!(player.getGameMode().equals(GameMode.SURVIVAL) || player.getGameMode().equals(GameMode.ADVENTURE))) {continue;}
+                Location playerLocation = player.getLocation();
+                if ((playerLocation.getY() >= classManager.getBorderManager().getBorderFloor() && playerLocation.getY() <= classManager.getBorderManager().getBorderCeiling())){
+                    playerLocation.setY(0);
+                    Location borderCentreXZ = new Location(classManager.getBorderManager().getWorld(), classManager.getBorderManager().getBorderX(), 0.0, classManager.getBorderManager().getBorderZ());
+                    if (!(playerLocation.distanceSquared(borderCentreXZ) >= Math.pow(classManager.getBorderManager().getBorderRadius(),2))){
+                        continue;
+                    }
+                }
+                player.damage(damage);
+            }
+        }, 1, 25);
+    }
 
     private boolean borderOn; //when border is turned on, set the world to the world command was run in (and other parameters// )
     private World world;
 
     //change to doubles
+    private double damage;
     private double borderX;
     private double borderZ;
     private double borderCeiling;
@@ -91,5 +118,13 @@ public class BorderManager {
 
     public void setWorld(World world) {
         this.world = world;
+    }
+
+    public double getDamage() {
+        return damage;
+    }
+
+    public void setDamage(double damage) {
+        this.damage = damage;
     }
 }

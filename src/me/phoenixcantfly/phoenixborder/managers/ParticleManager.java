@@ -42,6 +42,7 @@ public class ParticleManager {
         int ringCount = (int)Math.floor(cylHeight/distanceBetweenPoints);
         double ringBuffer = ((cylHeight/distanceBetweenPoints) - Math.floor(cylHeight/distanceBetweenPoints))/2;
 
+        double particleSize = 100;
         Particle.DustOptions dustOptions = new Particle.DustOptions(Color.fromRGB(r, g, b), size);
 
         //could stack to make spiral patter but too lazy
@@ -53,7 +54,7 @@ public class ParticleManager {
                 new BukkitRunnable() {
                     @Override
                     public void run() {
-                        world.spawnParticle(Particle.REDSTONE, posX, currentPosY, posZ, 1, dustOptions); //make forced?
+                        world.spawnParticle(Particle.REDSTONE, posX, currentPosY, posZ, 1, 0, 0, 0, particleSize, dustOptions); //make forced?
                         //Bukkit.broadcastMessage("HERE" + Bukkit.getServer().getWorlds());
                     }
                 }.runTask(classManager.getPlugin());
@@ -70,7 +71,7 @@ public class ParticleManager {
             new BukkitRunnable() {
                 @Override
                 public void run() {
-                    world.spawnParticle(Particle.REDSTONE, posX, floorHeight, posZ, 1, dustOptions);
+                    world.spawnParticle(Particle.REDSTONE, posX, floorHeight, posZ, 1, 0, 0, 0, particleSize, dustOptions); //make forced?
                 }
             }.runTask(classManager.getPlugin());
         }
@@ -81,7 +82,7 @@ public class ParticleManager {
             new BukkitRunnable() {
                 @Override
                 public void run() {
-                    world.spawnParticle(Particle.REDSTONE, posX, ceilingHeight, posZ, 1, dustOptions);
+                    world.spawnParticle(Particle.REDSTONE, posX, ceilingHeight, posZ, 1, 0, 0, 0, particleSize, dustOptions); //make forced?
                 }
             }.runTask(classManager.getPlugin());
         }
