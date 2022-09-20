@@ -83,7 +83,7 @@ public class ConfigManager {
         classManager.getBorderManager().setBorderOn(classManager.getConfigManager().getConfig().getBoolean("border-enabled"));
     }
 
-    public void setCeilingHeight(String[] strings){
+    public void setBorderCeilingHeight(String[] strings){
         classManager.getBorderManager().setBorderCeiling(Double.parseDouble(strings[0]));
         classManager.getConfigManager().getConfig().set("ceiling-height", classManager.getBorderManager().getBorderCeiling());
         classManager.getConfigManager().getConfig().set("floor-height", classManager.getBorderManager().getBorderFloor());
