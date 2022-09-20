@@ -3,7 +3,6 @@ main: me.phoenixcantfly.phoenixborder.Main
 version: 0.0.1
 description: cool border is v cool
 api-version: 1.18
-softdepend: [Multiverse]
 
 commands:
     setbordercentre:

@@ -9,15 +9,6 @@ import org.bukkit.scheduler.BukkitRunnable;
 import java.util.Objects;
 
 public class Main extends JavaPlugin {
-    //add time interpolation 1/6
-    //reformat messages
-
-    //test cmd blbocks
-    //test commands + variations working
-    //test command misuse
-
-    //change all method from string
-
     private ClassManager classManager;
 
     @Override
