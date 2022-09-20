@@ -24,7 +24,7 @@ public class SetBorderDamage implements CommandExecutor {
             }
         } else {
             if (commandSender instanceof Player) {
-                classManager.getMessageManager().warnPlayer((Player) commandSender, "Please specify damage amount (eg: /setborderdamage 2.0)");
+                classManager.getMessageManager().warnPlayer((Player) commandSender, "usage: /<command> <damage>");
             }
         }
         return true;

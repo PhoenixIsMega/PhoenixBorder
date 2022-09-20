@@ -33,11 +33,8 @@ public class SetBorderWorld implements CommandExecutor {
             }
         } else {
             if (commandSender instanceof Player) {
-                classManager.getMessageManager().warnPlayer((Player) commandSender, "Please specify a world namme (eg: /setborderworld world)");
+                classManager.getMessageManager().warnPlayer((Player) commandSender, "usage: /<command> <world-name>");
             }
-        }
-        if (commandSender instanceof Player) {
-
         }
         return true;
     }

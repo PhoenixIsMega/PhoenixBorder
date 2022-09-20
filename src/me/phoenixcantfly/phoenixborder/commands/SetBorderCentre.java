@@ -40,7 +40,7 @@ public class SetBorderCentre implements CommandExecutor {
             }
         } else {
             if (commandSender instanceof Player) {
-                classManager.getMessageManager().warnPlayer((Player) commandSender, "Please specify a new border centre (eg: /setbordercentre 0.0 10.0)");
+                classManager.getMessageManager().warnPlayer((Player) commandSender, "usage: /<command> <x> <z>");
             }
         }
         return true;

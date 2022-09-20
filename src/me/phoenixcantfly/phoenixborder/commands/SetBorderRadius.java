@@ -48,7 +48,7 @@ public class SetBorderRadius implements CommandExecutor {
             }, 0L, 5L);
         } else {
             if (commandSender instanceof Player) {
-                classManager.getMessageManager().warnPlayer((Player) commandSender, "Please specify a new radius (eg: /setborderradius 30.0)");
+                classManager.getMessageManager().warnPlayer((Player) commandSender, "usage: /<command> <radius> <time>");
             }
         }
         return true;

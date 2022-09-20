@@ -48,7 +48,7 @@ public class SetBorderCeilingHeight implements CommandExecutor {
             }, 0L, 5L);
         } else {
             if (commandSender instanceof Player) {
-                classManager.getMessageManager().warnPlayer((Player) commandSender, "Please specify a new border ceiling height (eg: /setborderceilingheight 30.0)");
+                classManager.getMessageManager().warnPlayer((Player) commandSender, "usage: /<command> <y> <time>");
             }
         }
         return true;

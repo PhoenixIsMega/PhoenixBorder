@@ -25,7 +25,7 @@ public class SetBorderParticleDistance implements CommandExecutor {
             }
         } else {
             if (commandSender instanceof Player) {
-                classManager.getMessageManager().warnPlayer((Player) commandSender, "Please specify a new distance between particles (eg: /setborderparticledistance 5.0)");
+                classManager.getMessageManager().warnPlayer((Player) commandSender, "usage: /<command> <distance>");
             }
         }
         return true;

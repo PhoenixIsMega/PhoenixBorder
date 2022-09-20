@@ -25,7 +25,7 @@ public class SetBorderRGB implements CommandExecutor {
             }
         } else {
             if (commandSender instanceof Player) {
-                classManager.getMessageManager().warnPlayer((Player) commandSender, "Please specify a new particle red, green AND blue (eg: /setborderrgb 230 120 20)");
+                classManager.getMessageManager().warnPlayer((Player) commandSender, "usage: /<command> <r> <g> <b>");
             }
         }
         return true;

@@ -34,10 +34,10 @@ commands:
         usage: /<command> <size>
         description: Sets Particle Size
     setborderparticledistance:
-        usage: /<command> <distance> <time>
+        usage: /<command> <distance>
         description: Sets Distance Between Particles
     setborderparticledistancevertical:
-        usage: /<command> <distance> <time>
+        usage: /<command> <distance>
         description: Sets Distance Between Particles
     setborderworld:
         usage: /<command> <world-name>

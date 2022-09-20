@@ -24,7 +24,7 @@ public class SetBorderParticleSize implements CommandExecutor {
             }
         } else {
             if (commandSender instanceof Player) {
-                classManager.getMessageManager().warnPlayer((Player) commandSender, "Please specify a new particle size (eg: /setborderparticlesize 1.0)");
+                classManager.getMessageManager().warnPlayer((Player) commandSender, "usage: /<command> <size>");
             }
         }
         return true;
