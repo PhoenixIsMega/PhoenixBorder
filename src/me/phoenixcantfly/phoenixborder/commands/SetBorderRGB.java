@@ -19,7 +19,7 @@ public class SetBorderRGB implements CommandExecutor {
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
         if ((commandSender instanceof Player && !(((Player) commandSender).isOp()))) { return true; }
         if(strings.length >= 3){
-            classManager.getConfigManager().setBorderRGB(strings);
+            classManager.getConfigManager().setBorderRGB(Integer.parseInt(strings[0]), Integer.parseInt(strings[1]), Integer.parseInt(strings[2]));
             if (commandSender instanceof Player) {
                 classManager.getMessageManager().messagePlayer((Player) commandSender, "Set border particle RGB to " + ChatColor.RED + strings[0] + " " + ChatColor.GREEN + strings[1] + " " + ChatColor.BLUE + strings[2]);
             }

@@ -28,12 +28,12 @@ public class SetBorderCentre implements CommandExecutor {
 
                 double playerX = ((Player) commandSender).getLocation().getX();
                 double playerZ = ((Player) commandSender).getLocation().getZ();
-                classManager.getConfigManager().setBorderCentre(new String[]{String.valueOf(playerX), String.valueOf(playerZ)});
+                classManager.getConfigManager().setBorderCentre((Double) playerX, (Double) playerZ);
 
                 classManager.getMessageManager().messagePlayer((Player) commandSender, "Set border centre to " + ChatColor.GOLD + playerX + ", " + playerZ);
             }
         } else if (strings.length >= 2){
-            classManager.getConfigManager().setBorderCentre(strings);
+            classManager.getConfigManager().setBorderCentre(Double.parseDouble(strings[0]), Double.parseDouble(strings[1]));
 
             if (commandSender instanceof Player) {
                 classManager.getMessageManager().messagePlayer((Player) commandSender, "Set border centre to " + ChatColor.GOLD + strings[0] + ", " + strings[1]);

@@ -25,7 +25,7 @@ public class SetBorderRadius implements CommandExecutor {
         if ((commandSender instanceof Player && !(((Player) commandSender).isOp()))) { return true; }
         if(strings.length == 1) {
             Bukkit.getServer().getScheduler().cancelTask(taskID);
-            classManager.getConfigManager().setBorderRadius(strings);
+            classManager.getConfigManager().setBorderRadius(Double.parseDouble(strings[0]));
             if (commandSender instanceof Player) {
                 classManager.getMessageManager().messagePlayer((Player) commandSender, "Set border radius to " + ChatColor.GOLD + strings[0]);
             }
@@ -39,7 +39,7 @@ public class SetBorderRadius implements CommandExecutor {
             int maxLoops = time*4;
             taskID = Bukkit.getScheduler().scheduleSyncRepeatingTask(classManager.getPlugin(), new Runnable() {
                 public void run() {
-                    classManager.getConfigManager().setBorderRadius(new String[]{String.valueOf(classManager.getBorderManager().getBorderRadius()-moveDistance)});
+                    classManager.getConfigManager().setBorderRadius((Double) classManager.getBorderManager().getBorderRadius()-moveDistance);
                     int currentIt = currentIteration.incrementAndGet();
                     if(currentIt > maxLoops){
                         Bukkit.getScheduler().cancelTask(taskID);

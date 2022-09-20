@@ -25,7 +25,7 @@ public class SetBorderCeilingHeight implements CommandExecutor {
         if ((commandSender instanceof Player && !(((Player) commandSender).isOp()))) { return true; }
         if(strings.length == 1) {
             Bukkit.getServer().getScheduler().cancelTask(taskID);
-            classManager.getConfigManager().setBorderCeilingHeight(strings);
+            classManager.getConfigManager().setBorderCeilingHeight(Double.parseDouble(strings[0]));
             if (commandSender instanceof Player) {
                 classManager.getMessageManager().messagePlayer((Player) commandSender, "Set border ceiling height to " + ChatColor.GOLD + strings[0]);
             }
@@ -39,7 +39,7 @@ public class SetBorderCeilingHeight implements CommandExecutor {
             int maxLoops = time*4;
             taskID = Bukkit.getScheduler().scheduleSyncRepeatingTask(classManager.getPlugin(), new Runnable() {
                 public void run() {
-                    classManager.getConfigManager().setBorderCeilingHeight(new String[]{String.valueOf(classManager.getBorderManager().getBorderCeiling()-moveDistance)});
+                    classManager.getConfigManager().setBorderCeilingHeight((Double) classManager.getBorderManager().getBorderCeiling()-moveDistance);
                     int currentIt = currentIteration.incrementAndGet();
                     if(currentIt > maxLoops){
                         Bukkit.getScheduler().cancelTask(taskID);

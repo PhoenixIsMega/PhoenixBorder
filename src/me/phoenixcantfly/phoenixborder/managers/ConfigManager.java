@@ -83,70 +83,70 @@ public class ConfigManager {
         classManager.getBorderManager().setBorderOn(classManager.getConfigManager().getConfig().getBoolean("border-enabled"));
     }
 
-    public void setBorderCeilingHeight(String[] strings){
-        classManager.getBorderManager().setBorderCeiling(Double.parseDouble(strings[0]));
+    public void setBorderCeilingHeight(Double height){
+        classManager.getBorderManager().setBorderCeiling(height);
         classManager.getConfigManager().getConfig().set("ceiling-height", classManager.getBorderManager().getBorderCeiling());
         classManager.getConfigManager().getConfig().set("floor-height", classManager.getBorderManager().getBorderFloor());
         classManager.getConfigManager().saveConfig();
     }
 
-    public void setBorderCentre(String[] strings){
-        classManager.getConfigManager().getConfig().set("x", Double.valueOf(strings[0]));
-        classManager.getConfigManager().getConfig().set("z", Double.valueOf(strings[1]));
+    public void setBorderCentre(Double x, Double z){
+        classManager.getConfigManager().getConfig().set("x", x);
+        classManager.getConfigManager().getConfig().set("z", z);
         classManager.getConfigManager().saveConfig();
         classManager.getBorderManager().setBorderX(classManager.getConfigManager().getConfig().getDouble("x"));
         classManager.getBorderManager().setBorderZ(classManager.getConfigManager().getConfig().getDouble("z"));
     }
 
-    public void setBorderDamage(String[] strings){
-        classManager.getConfigManager().getConfig().set("damage", Double.valueOf(strings[0]));
+    public void setBorderDamage(Double damage){
+        classManager.getConfigManager().getConfig().set("damage", damage);
         classManager.getConfigManager().saveConfig();
         classManager.getBorderManager().setDamage(classManager.getConfigManager().getConfig().getDouble("damage"));
     }
 
-    public void setBorderFloorHeight(String[] strings){
-        classManager.getBorderManager().setBorderFloor(Double.parseDouble(strings[0]));
+    public void setBorderFloorHeight(Double height){
+        classManager.getBorderManager().setBorderFloor(height);
         classManager.getConfigManager().getConfig().set("ceiling-height", classManager.getBorderManager().getBorderCeiling());
         classManager.getConfigManager().getConfig().set("floor-height", classManager.getBorderManager().getBorderFloor());
         classManager.getConfigManager().saveConfig();
     }
 
-    public void setBorderParticleDistance(String[] strings){
-        classManager.getConfigManager().getConfig().set("distance", Double.valueOf(strings[0]));
+    public void setBorderParticleDistance(Double distance){
+        classManager.getConfigManager().getConfig().set("distance", distance);
         classManager.getConfigManager().saveConfig();
         classManager.getParticleManager().setDistanceBetweenPoints(classManager.getConfigManager().getConfig().getDouble("distance"));
     }
 
-    public void setBorderParticleDistanceVertical(String[] strings){
-        classManager.getConfigManager().getConfig().set("distance-vertical", Double.valueOf(strings[0]));
+    public void setBorderParticleDistanceVertical(Double distance){
+        classManager.getConfigManager().getConfig().set("distance-vertical", distance);
         classManager.getConfigManager().saveConfig();
         classManager.getParticleManager().setDistanceBetweenPointsVertical(classManager.getConfigManager().getConfig().getDouble("distance-vertical"));
     }
 
-    public void setBorderParticleSize(String[] strings){
-        classManager.getConfigManager().getConfig().set("size", Double.valueOf(strings[0]));
+    public void setBorderParticleSize(Double size){
+        classManager.getConfigManager().getConfig().set("size", size);
         classManager.getConfigManager().saveConfig();
         classManager.getParticleManager().setSize((float) classManager.getConfigManager().getConfig().getDouble("size"));
     }
 
-    public void setBorderRadius(String[] strings) {
-        classManager.getConfigManager().getConfig().set("radius", Double.valueOf(strings[0]));
+    public void setBorderRadius(Double radius) {
+        classManager.getConfigManager().getConfig().set("radius", radius);
         classManager.getConfigManager().saveConfig();
         classManager.getBorderManager().setBorderRadius(classManager.getConfigManager().getConfig().getDouble("radius"));
     }
 
-    public void setBorderRGB(String[] strings){
-        classManager.getConfigManager().getConfig().set("r", Integer.valueOf(strings[0]));
-        classManager.getConfigManager().getConfig().set("g", Integer.valueOf(strings[1]));
-        classManager.getConfigManager().getConfig().set("b", Integer.valueOf(strings[2]));
+    public void setBorderRGB(Integer r, Integer g, Integer b){
+        classManager.getConfigManager().getConfig().set("r", r);
+        classManager.getConfigManager().getConfig().set("g", g);
+        classManager.getConfigManager().getConfig().set("b", b);
         classManager.getConfigManager().saveConfig();
         classManager.getParticleManager().setR(classManager.getConfigManager().getConfig().getInt("r"));
         classManager.getParticleManager().setG(classManager.getConfigManager().getConfig().getInt("g"));
         classManager.getParticleManager().setB(classManager.getConfigManager().getConfig().getInt("b"));
     }
 
-    public void setBorderWorld(String[] strings){
-        classManager.getConfigManager().getConfig().set("world-name", strings[0]);
+    public void setBorderWorld(String name){
+        classManager.getConfigManager().getConfig().set("world-name", name);
         classManager.getConfigManager().saveConfig();
         classManager.getBorderManager().setWorld(Bukkit.getWorld(Objects.requireNonNull(classManager.getConfigManager().getConfig().getString("world-name"))));
     }

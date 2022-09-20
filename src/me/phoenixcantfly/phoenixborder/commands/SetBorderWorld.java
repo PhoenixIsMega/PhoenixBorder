@@ -27,7 +27,7 @@ public class SetBorderWorld implements CommandExecutor {
                 }
                 return true;
             }
-            classManager.getConfigManager().setBorderWorld(strings);
+            classManager.getConfigManager().setBorderWorld(strings[0]);
             if (commandSender instanceof Player) {
                 classManager.getMessageManager().messagePlayer((Player) commandSender, "Set border world to " + ChatColor.GOLD + strings[0]);
             }
