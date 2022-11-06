@@ -40,8 +40,8 @@ public class ParticleManager {
 
         if (cylHeight < 0) {cylHeight *= -1;}
 
-        int minPointCount = 5; //change to be variable in settings later
-        int pointCount = Math.max(minPointCount, (int)Math.floor((2*radius*Math.PI)/distanceBetweenPoints));
+        //int minPointCount = 5; //change to be variable in settings later
+        int pointCount = Math.max(5, (int)Math.floor((2*radius*Math.PI)/distanceBetweenPoints));
 
         int ringCount = (int)Math.floor(cylHeight/distanceBetweenPointsVertical);
         double ringBuffer = (ceilingHeight - (floorHeight + (ringCount*distanceBetweenPointsVertical)))/2;
